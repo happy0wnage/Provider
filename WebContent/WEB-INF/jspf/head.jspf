@@ -1,0 +1,11 @@
+<%@ page pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
+
+<head>
+<title>Internet</title>
+<meta name="description" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>

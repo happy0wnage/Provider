@@ -1,0 +1,35 @@
+<%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
+
+<div class="header">
+	<div class="title">
+		<img src="image/head.png" alt="Zippo" />
+	</div>
+	<div class="title_menu">
+
+		<ul class="menu">
+			<li><a href="index.jsp">Main</a></li>
+			<li><c:if test="${userRole == 'admin'}">
+					<a class="active" href="controller?command=admin">My Account</a>
+				</c:if>
+				<c:if test="${userRole == 'abonent'}">
+					<a class="active" href="controller?command=abonent">My Account</a>
+				</c:if>
+				</li>
+			<li><a href="pages/about.html">Services</a></li>
+			<li><a href="pages/giftcard.html">Connections</a></li>
+		</ul>
+
+	</div>
+
+	<div class="register">
+		<div id="form">
+			<font class="log">You are logged in as:</font> <b>Login:</b>
+			<c:out value="${user}" />
+			<b>Status:</b>
+			<c:out value="${userRole}" />
+			[<a href="controller?command=logout">Exit</a>]
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,7 @@
+<Context>
+	<Resource name="jdbc/provider" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="root" password="Vlad1kpetrov"
+		driverClassName="com.mysql.jdbc.Driver" defaultAutoCommit="false"
+		defaultTransactionIsolation="READ_COMMITTED" url="jdbc:mysql://localhost:3306/provider"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" />
+</Context>

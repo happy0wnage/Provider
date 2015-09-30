@@ -1,0 +1,41 @@
+<%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+
+<div class="register">
+	<table class="login">
+		<tr>
+			<td><c:choose>
+					<c:when test="${not empty user}">
+						<my:printLogout/>
+					</c:when>
+					<c:otherwise>
+						<form id="line" action="controller" method="post">
+							<input type="hidden" name="command" value="login" /> <font
+								class="log"> <b><fmt:message key="login_jspf.log_in" />:
+							</b></font>
+							<fmt:message key="login_jspf.name" />
+							: <input type="text" name="login" />
+							<fmt:message key="login_jspf.password" />
+							: <input type="password" name="password" /> <input class="btn"
+								type="submit" value="<fmt:message key="login_jspf.sign_up" />" />
+						</form>
+						<form id="line" action="controller" method="post">
+							<input type="hidden" name="command" value="registerPage" /> <input
+								class="btn" type="submit"
+								value="<fmt:message key="login_jspf.register" />" />
+						</form>
+					</c:otherwise>
+				</c:choose></td>
+			<td>&nbsp; &nbsp; <a id="nondecoration" class="lang"
+				href="controller?command=updateLocale&locale=ru"> <img
+					src="image/ru.png" width="30" height="30" />
+			</a> &nbsp;&nbsp;<a id="nondecoration" class="lang"
+				href="controller?command=updateLocale&locale=en"> <img
+					src="image/en.png" width="30" height="30" />
+			</a>
+			</td>
+		</tr>
+	</table>
+</div>
+

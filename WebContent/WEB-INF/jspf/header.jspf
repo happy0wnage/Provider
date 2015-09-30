@@ -1,0 +1,43 @@
+<%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
+
+<header class="header">
+	<div class="title">
+		<img src="image/head.png" alt="Zippo" />
+	</div>
+
+
+
+	<c:choose>
+		<c:when test="${not empty user}">
+			<div class="register">
+				<div id="form">
+					<font class="log">You are logged in as:</font> <b>Login:</b>
+					<c:out value="${user}" />
+					<b>Status:</b>
+					<c:out value="${userRole}" />
+					[<a href="controller?command=logout">Exit</a>]
+				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="register">
+				<div id="form">
+					<form id="line" action="controller" method="post">
+						<input type="hidden" name="command" value="login" /> <font
+							class="log"> <b>Log In: </b></font> User name : <input
+							type="text" name="login" /> Password : <input type="password"
+							name="password" /> <input class="btn" type="submit"
+							value="Sign up" />
+					</form>
+					<form id="line" action="controller" method="post">
+						<input type="hidden" name="command" value="registerPage" /> <input
+							class="btn" type="submit" value="Register" />
+					</form>
+				</div>
+			</div>
+		</c:otherwise>
+
+	</c:choose>
+	<%@ include file="/WEB-INF/jspf/menu/menu_1.jspf"%>
+</header>

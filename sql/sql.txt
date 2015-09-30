@@ -1,0 +1,86 @@
+CREATE SCHEMA IF NOT EXISTS `Provider` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+
+CREATE TABLE IF NOT EXISTS `Provider`.`Service` (
+  `idService` INT(11) NOT NULL,
+  `idContract` INT(11) NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Start date` DATE NOT NULL,
+  `Balance` DOUBLE NOT NULL,
+  PRIMARY KEY (`idService`),
+  INDEX `fk_Service_Contract1_idx` (`idContract` ASC),
+  CONSTRAINT `fk_Service_Contract1`
+    FOREIGN KEY (`idContract`)
+    REFERENCES `Provider`.`Contract` (`idContract`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `Provider`.`Administrator` (
+  `idAdministrator` INT(11) NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Login` VARCHAR(45) NOT NULL,
+  `Surname` VARCHAR(45) NOT NULL,
+  `Contact_phone` INT(11) NOT NULL,
+  `Post` VARCHAR(45) NOT NULL,
+  `Address` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idAdministrator`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `Provider`.`Abonent` (
+  `idAbonent` INT(11) NOT NULL,
+  `Login` VARCHAR(45) NOT NULL,
+  `Full name` VARCHAR(45) NOT NULL,
+  `Contact_phone` INT(11) NOT NULL,
+  `DOB` DATE NOT NULL,
+  `Address` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idAbonent`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `Provider`.`Contract` (
+  `idContract` INT(11) NOT NULL,
+  `idAdministrator` INT(11) NOT NULL,
+  `idAbonent` INT(11) NOT NULL,
+  `IP` VARCHAR(45) NOT NULL,
+  `Start_date` DATE NOT NULL,
+  `End_date` DATE NOT NULL,
+  PRIMARY KEY (`idContract`),
+  INDEX `fk_Contract_Administrator1_idx` (`idAdministrator` ASC),
+  INDEX `fk_Contract_Abonent1_idx` (`idAbonent` ASC),
+  CONSTRAINT `fk_Contract_Administrator1`
+    FOREIGN KEY (`idAdministrator`)
+    REFERENCES `Provider`.`Administrator` (`idAdministrator`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Contract_Abonent1`
+    FOREIGN KEY (`idAbonent`)
+    REFERENCES `Provider`.`Abonent` (`idAbonent`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `Provider`.`Tariff` (
+  `idTariff` INT(11) NOT NULL,
+  `idService` INT(11) NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `City` VARCHAR(45) NOT NULL,
+  `Fee` DOUBLE NOT NULL,
+  `Speed_limit` DOUBLE NOT NULL,
+  PRIMARY KEY (`idTariff`),
+  INDEX `fk_Tariff_Service1_idx` (`idService` ASC),
+  CONSTRAINT `fk_Tariff_Service1`
+    FOREIGN KEY (`idService`)
+    REFERENCES `Provider`.`Service` (`idService`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;

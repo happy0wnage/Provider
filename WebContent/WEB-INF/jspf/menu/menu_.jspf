@@ -1,0 +1,47 @@
+<%@ include file="/WEB-INF/jspf/directive/page.jspf"%>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf"%>
+
+<div id="main">
+	<nav>
+		<ul>
+			<li><a href="index.jsp"><fmt:message key="header.main" /></a></li>
+
+			<c:if test="${userRole == 'admin'}">
+				<li><a href="#"><fmt:message key="header.account" /></a>
+					<ul>
+						<li><a href="controller?command=tariff"><fmt:message
+									key="header.tariffs" /></a></li>
+						<li><a href="controller?command=contract"><fmt:message
+									key="header.contracts" /></a></li>
+						<li><a href="controller?command=abonent"><fmt:message
+									key="header.abonents" /></a></li>
+						<li><a href="controller?command=service"><fmt:message
+									key="header.services" /></a></li>
+					</ul></li>
+			</c:if>
+			<c:if test="${userRole == 'client'}">
+				<li><a href="#"><fmt:message key="header.account" /></a>
+					<ul>
+						<li><a href="controller?command=abonent_account"><fmt:message
+									key="header.personal_account" /></a></li>
+						<li><a href="controller?command=abonent_profile"><fmt:message
+									key="header.profile" /></a></li>
+					</ul></li>
+				<li><a href="controller?command=connection"><fmt:message
+							key="header.connect" /></a></li>
+			</c:if>
+
+			<c:if test="${empty userRole}">
+				<li><a href="controller?command=accountFix"><fmt:message
+							key="header.account" /></a></li>
+				<li><a href="controller?command=accountFix"><fmt:message
+							key="header.connect" /></a></li>
+				<li><a href="controller?command=servicesCatalog"><fmt:message
+							key="header.services" /></a></li>
+			</c:if>
+
+			<li><a href="controller?command=about"><fmt:message
+						key="header.about" /></a></li>
+		</ul>
+	</nav>
+</div>
